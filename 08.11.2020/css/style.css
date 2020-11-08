@@ -1,0 +1,33 @@
+form {
+	background: blue;
+  padding: 5px;
+  color: white;
+	border-radius: 5px;
+}
+input {
+	display: block;
+}
+button {
+	border-radius: 5px;
+	background-color: green;
+	margin: 15px;
+	width:30%;
+	color:white;
+	height: 40px;
+}
+.h1-func {
+     display: flex;
+     margin: 0 auto;
+     width: 400px
+}
+form, .answer {
+	margin: 20px auto;
+	width: 300px;
+}
+.content-func {
+	width: 900px;
+	margin-left: 200px;
+}
+ul {
+	list-style-type: none;
+}
