@@ -31,3 +31,7 @@ form, .answer {
 ul {
 	list-style-type: none;
 }
+textarea {
+	width: 100%;
+	resize: none;
+}

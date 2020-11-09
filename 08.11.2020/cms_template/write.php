@@ -12,16 +12,14 @@
 	<button type="submit">Send</button>
 </form>
 <?php 
-if($_POST['text']) {
 	$string = $_POST['text'];
-	print_r($string);
-	$fd = fopen("write.php", 'a+') or die("не удалось открыть файл");
+	$fd = fopen("cms_template/write.php", 'a+') or die("не удалось открыть файл");
 	fwrite($fd, $string);
-}
-
+	fclose($fd);
+	$content = file_get_contents("cms_template/write.php");
 ?>
 
-<p></p>
+<p><?=$content?></p>
 
 </body>
 </html>
