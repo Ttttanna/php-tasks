@@ -13,10 +13,10 @@
 </form>
 <?php 
 	$string = $_POST['text'];
-	$fd = fopen("cms_template/write.php", 'a+') or die("не удалось открыть файл");
+	$fd = fopen("text.txt", 'a+') or die("не удалось открыть файл");
 	fwrite($fd, $string);
 	fclose($fd);
-	$content = file_get_contents("cms_template/write.php");
+	$content = file_get_contents("text.txt");
 ?>
 
 <p><?=$content?></p>
