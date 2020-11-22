@@ -17,6 +17,7 @@ echo "Админка";
     <title>Admin</title> 
     <!-- Custom CSS -->
     <link href="../assets/css/style.min.css" rel="stylesheet">
+		<link href="../assets/css/admin.css" rel="stylesheet">
 </head>
 
 <body>
@@ -67,7 +68,7 @@ echo "Админка";
         <!-- ============================================================== -->
         <!-- Left Sidebar - style you can find in sidebar.scss  -->
         <!-- ============================================================== -->
-        <aside class="left-sidebar" data-sidebarbg="skin6">
+        <aside class="left-sidebar invisible" data-sidebarbg="skin6">
             <!-- Sidebar scroll-->
             <div class="scroll-sidebar">
                 <!-- Sidebar navigation-->
@@ -142,9 +143,37 @@ echo "Админка";
                
                     <div class="col-md-6 col-4 align-self-center">
                         <div class="text-right upgrade-btn">
-                            <a href="/form.php"
-                                class="btn btn-danger d-none d-md-inline-block text-white" target="_blank">Добавить статью
-                            </a>
+                            <button
+                               class="admin" class="btn btn-danger d-none d-md-inline-block text-white">Добавить статью
+                            </button>
+														<div class="aform invisible">
+														  <form action="" method="post" enctype="multipart/form-data">
+	                               <label> Title
+		                              <input type="text" name="title" />
+                                 </label>
+		                             <br>
+		                             <label>Image
+		                              <input type="text" name="img" />
+                                 </label>
+		                              <br>
+		                             <label>Content
+		                               <textarea name="content" id="" cols="30" rows="10"></textarea>
+                                 </label>
+		                               <br>
+		                              <label>Author
+		                                <input type="text" name="author" />
+                                  </label>
+		                              <br>
+		                               <label>Category
+		                                <input type="text" name="category" />
+                                  </label>
+	                              	<br>
+		                               <input type="file" name="loaded" />
+                                   <button type="submit">Save</button>
+                                   </form>
+														
+														
+														</div>
                         </div>
                     </div>
             </div>
@@ -164,11 +193,21 @@ echo "Админка";
         <!-- End Page wrapper  -->
         <!-- ============================================================== -->
     </div>
-    <!-- ============================================================== -->
-    <!-- End Wrapper -->
-    <!-- ============================================================== -->
-    <!-- ============================================================== -->
-    <!-- All Jquery -->
-    <!-- ============================================================== -->    
+    <script src="../assets/js/admin.js"></script>   
 </body>
 </html>
+<?php
+require_once '../db.php';
+
+if ( $_FILES['loaded']['error'] == UPLOAD_ERR_OK ) {
+	$uploaddir = '../upload/';
+  $uploadfile = $uploaddir . basename($_FILES['loaded']['name']);
+	move_uploaded_file( $_FILES['loaded']['tmp_name'], $uploadfile );
+	}
+if (!empty($_POST)){
+   $sql = "INSERT INTO `pages` (`title`, `img`, `content`, `author`, `category`, `loaded`)
+    VALUES ('{$_POST['title']}', '{$_POST['img']}', '{$_POST['content']}', '{$_POST['author']}', 
+    '{$_POST['category']}', '{$uploadfile}' )
+";
+   mysqli_query($connection, $sql);
+}
