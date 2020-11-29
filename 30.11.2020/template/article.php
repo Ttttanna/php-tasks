@@ -14,9 +14,9 @@ if (mysqli_num_rows($res) === 1):
         <div class="container">
             <div class="row">
                 <div class="col-lg-8 col-md-10 mx-auto">
-									  <img src ="<?= $article['img'] ?>">
+									  
 										<?= $article['content'] ?>
-										<img src="<?=$article['loaded']?>">
+										<img src="<?=$article['img']?>">
                 </div>
             </div>
         </div>

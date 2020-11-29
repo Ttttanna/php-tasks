@@ -1,33 +1,42 @@
+<?php
+if(isset($_GET['id']) && !empty($_GET['id']) && $_GET['action'] == 'edit_page') {
+	$sql= "SELECT * from pages where id =".$_GET['id'];
+	$res = mysqli_query($connection, $sql);
+	$page = mysqli_fetch_assoc($res);
+}
+
+$url = isset($page['id']) ? '/admin/?action=update_page&id=' .$page['id'] : '/admin/?action=save_page';
+
+?>
+
 <div class="page-breadcrumb">
                
                     <div class="col-md-6 col-4 align-self-center">
                         <div class="text-right upgrade-btn">
-                            <button
-                               class="admin" class="btn btn-danger d-none d-md-inline-block text-white">Добавить статью
-                            </button>
-														<div class="aform invisible">
-														  <form action="/admin/?action=save_page" method="post" enctype="multipart/form-data">
+                           
+														<div class="aform">
+														  <form action="<?= $url ?>" method="post" enctype="multipart/form-data">
 	                               <label> Title
-		                              <input type="text" name="title" />
+		                              <input type="text" name="title" value="<?=$page['title'] ?? ''?>"/>
                                  </label>
 		                             <br>
 		                             <label>Image
-		                              <input type="text" name="img" />
+		                              <input type="file" name="img"/>
                                  </label>
 		                              <br>
 		                             <label>Content
-		                               <textarea name="content" id="" cols="30" rows="10"></textarea>
+		                               <textarea name="content" id="" cols="30" rows="10"><?=$page['title'] ?? ''?></textarea>
                                  </label>
 		                               <br>
 		                              <label>Author
-		                                <input type="text" name="author" />
+		                                <input type="text" name="author"  value="<?=$page['author'] ?? ''?>"/>
                                   </label>
 		                              <br>
 		                               <label>Category
-		                                <input type="text" name="category" />
+		                                <input type="text" name="category"  value="<?=$page['category'] ?? ''?>"/>
                                   </label>
 	                              	<br>
-		                               <input type="file" name="loaded" />
+		                               
                                    <button type="submit">Save</button>
                                    </form>
 														

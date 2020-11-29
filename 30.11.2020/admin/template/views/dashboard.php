@@ -13,9 +13,9 @@
                     </div>
                     <div class="col-md-6 col-4 align-self-center">
                         <div class="text-right upgrade-btn">
-                            <a href="https://www.wrappixel.com/templates/materialpro/"
-                                class="btn btn-danger d-none d-md-inline-block text-white" target="_blank">Upgrade to
-                                Pro</a>
+                            <a href="/admin/?action=add_page"
+                                class="btn btn-danger d-none d-md-inline-block text-white" target="_blank">добавить статью
+                             </a>
                         </div>
                     </div>
                 </div>
