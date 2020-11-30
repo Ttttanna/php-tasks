@@ -1,7 +1,13 @@
 <?php
 if(isset($_GET['id']) && !empty($_GET['id']) && $_GET['action'] == 'edit_page') {
-	$sql= "SELECT * from pages where id =".$_GET['id'];
-	$res = mysqli_query($connection, $sql);
+	$id = $_GET['id'];
+	//$sql= "SELECT * from pages where id =".$_GET['id'];
+	//$res = mysqli_query($connection, $sql);
+	//$page = mysqli_fetch_assoc($res);
+	$stmt = mysqli_prepare($connection, "SELECT * from pages where id=?");
+	mysqli_stmt_bind_param($stmt, "d", $id);
+	mysqli_stmt_execute($stmt);
+	$res = mysqli_stmt_get_result($stmt);
 	$page = mysqli_fetch_assoc($res);
 }
 
@@ -25,7 +31,7 @@ $url = isset($page['id']) ? '/admin/?action=update_page&id=' .$page['id'] : '/ad
                                  </label>
 		                              <br>
 		                             <label>Content
-		                               <textarea name="content" id="" cols="30" rows="10"><?=$page['title'] ?? ''?></textarea>
+		                               <textarea name="content" id="" cols="30" rows="10"><?=$page['content'] ?? ''?></textarea>
                                  </label>
 		                               <br>
 		                              <label>Author

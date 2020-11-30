@@ -22,7 +22,7 @@ $pages = mysqli_fetch_all($res, MYSQLI_ASSOC);
       <td><?=$page['title']?></td>
       <td>
 				<a href="/admin/?action=edit_page&id=<?=$page['id']?>">Редактировать</a>
-				<a href="/admin/?action=edit_page&id=<?=$page['id']?>">Удалить</a>
+				<a href="/admin/?action=delete_page&id=<?=$page['id']?>">Удалить</a>
 			</td>
     </tr>
 		<?php endforeach; ?>
